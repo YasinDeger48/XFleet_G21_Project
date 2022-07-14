@@ -6,6 +6,5 @@ public class PagesDemo {
 
         System.out.println("hello");
 
-
     }
 }
