@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BasePage {
+public abstract class BasePage {
 
 
     //constructor
@@ -21,6 +21,10 @@ public class BasePage {
     @FindBy(css = "div[class='loader-mask shown']")
     @CacheLookup
     protected WebElement loaderMask;
+
+    //other locator for attribute to be
+    @FindBy(xpath = "//body/div[4]")
+    public WebElement loaderMasky;
 
 
     //---methods-----------------

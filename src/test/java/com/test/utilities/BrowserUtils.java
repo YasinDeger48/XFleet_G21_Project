@@ -205,7 +205,7 @@ public class BrowserUtils {
      */
 
 
-    public static String getPasswordWithOracle() {
+    /*public static String getPasswordWithOracle() {
 
         Random random = new Random();
 
@@ -269,7 +269,7 @@ public class BrowserUtils {
 
         return usernames.get(random.nextInt(usernames.size()));
     }
-
+*/
 
 
 
@@ -288,6 +288,9 @@ public class BrowserUtils {
     }
 
 
+    public static WebElement getElement(WebDriver driver, String value){
 
+        return driver.findElement(By.xpath("//*[contains(.,'"+value+"')]"));
+    }
 
 }
