@@ -17,12 +17,15 @@ public class LoginPage extends BasePage {
     public WebElement loginButton;
 
 
+
+
+    //METHODS
+
     public void login(String USERNAME, String PASSWORD) {
         username.sendKeys(USERNAME);
         password.sendKeys(PASSWORD);
         loginButton.click();
     }
-
 
     public void signIn(String userType) {
 

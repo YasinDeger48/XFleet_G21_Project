@@ -34,6 +34,70 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//a[@title='Create Car']")
     public WebElement createCarButton;
 
+    //ADD EVENT COMPULSORY TITLES
+
+    @FindBy(xpath = "(//div[@class='span6']//label)[1]")
+    public WebElement titlePopUP;
+
+    @FindBy(xpath = "(//div[@class='span6']//label)[8]")
+    public WebElement ownerPopUP;
+
+    @FindBy(xpath = "(//div[@class='span6']//label)[9]")
+    public WebElement organizerDisplayNamePopUP;
+
+    @FindBy(xpath = "(//div[@class='span6']//label)[10]")
+    public WebElement organizerEmailPopUP;
+
+    @FindBy(xpath = "(//div[@class='span6']//label)[11]")
+    public WebElement startDatePopUP;
+
+    @FindBy(xpath = "(//div[@class='span6']//label)[12]")
+    public WebElement endDatePopUP;
+
+
+    //ADD EVENT COMPULSORY FIELDs
+
+    @FindBy(name = "oro_calendar_event_form[title]")
+    public WebElement titleInAddEventPopUp;
+
+    @FindBy(xpath = "//span[@class='select2-chosen']")
+    public WebElement ownerInAddEventPopUp;
+
+    @FindBy(name = "oro_calendar_event_form[organizerDisplayName]")
+    public WebElement organizerDisplayNamePopUp;
+
+    @FindBy(xpath = "//input[contains(@name,'date_selector_oro_calendar_event_form_start-uid')]")
+    public WebElement startDateInAddEventPopUp;
+
+    @FindBy(xpath = "//input[contains(@name,'time_selector_oro_calendar_event_form_start-uid')]")
+    public WebElement startHourInAddEventPopUp;
+
+    @FindBy(xpath = "//input[contains(@name,'date_selector_oro_calendar_event_form_end-uid')]")
+    public WebElement endDateInAddEventPopUp;
+
+    @FindBy(xpath = "//input[contains(@name,'time_selector_oro_calendar_event_form_end-uid')]")
+    public WebElement endHourInAddEventPopUp;
+
+    @FindBy(xpath = "//button[.='Save']")
+    public WebElement saveButtonPopUp;
+
+    //ADD EVENT COMPULSORY FIELDS ERROR MESSAGES
+
+
+    @FindBy(xpath = "//input[@name='oro_calendar_event_form[title]']//..//span[.='This value should not be blank.']")
+    public WebElement titleErrorMessage;
+
+    @FindBy(xpath = "//input[contains(@name,'date_selector_oro_calendar_event_form_start-uid')]//..//..//span[.='This value should not be blank.']")
+    public WebElement startDateErrorMessage;
+
+    @FindBy(xpath = "//input[contains(@name,'time_selector_oro_calendar_event_form_start-uid')]//..//..//span[.='This value should not be blank.']")
+    public WebElement startTimeErrorMessage;
+
+    @FindBy(xpath = "//input[contains(@name,'date_selector_oro_calendar_event_form_end-uid')]//..//..//span[.='This value should not be blank.']")
+    public WebElement endDateErrorMessage;
+
+    @FindBy(xpath = "//input[contains(@name,'time_selector_oro_calendar_event_form_end-uid')]//..//..//span[.='This value should not be blank.']")
+    public WebElement endTimeErrorMessage;
 
 
 
