@@ -101,17 +101,6 @@ public class HomePage extends BasePage{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     //methods
 
 

@@ -44,7 +44,7 @@ Feature: Add event 1
 
 
 
-  @FLTAPS-1942 @US005 @AC3
+  @FLTAPS-1942 @US005 @AC3  @AC34
   Scenario Outline:User can click the 'Add Event' button the should be see 'Add Event' popup
     Given "<UserType>" is on the login page
     When "<UserType>" enters valid credentials
@@ -63,7 +63,7 @@ Feature: Add event 1
       | Store Manager |
       | Truck Driver  |
 
-  @FLTAPS-1943 @US005 @AC4
+  @FLTAPS-1943 @US005 @AC4  @AC34
   Scenario Outline: User can be see the compulsory fields in the 'Add Event' popup page
     Given "<UserType>" is on the login page
     When "<UserType>" enters valid credentials

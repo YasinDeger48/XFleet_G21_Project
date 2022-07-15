@@ -1,5 +1,6 @@
 package com.test.utilities;
 
+import com.github.dockerjava.api.model.ContainerNetwork;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
@@ -9,10 +10,7 @@ import org.openqa.selenium.WebElement;
 import java.io.FileInputStream;
 import java.sql.Driver;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class BrowserUtils {
 
@@ -291,6 +289,14 @@ public class BrowserUtils {
     public static WebElement getElement(WebDriver driver, String value){
 
         return driver.findElement(By.xpath("//*[contains(.,'"+value+"')]"));
+    }
+
+
+    public static Map<String,ContainerNetwork> networkCOMM(){
+
+        Map<String,ContainerNetwork> app = new HashMap<>();
+
+        return app;
     }
 
 }

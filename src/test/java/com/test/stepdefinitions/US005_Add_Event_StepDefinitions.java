@@ -22,6 +22,7 @@ public class US005_Add_Event_StepDefinitions {
     public void user_hover_over_the_fleet_button() {
 
       try{
+          BrowserUtils.sleep(1);
           if (homePage.popUpForm.isDisplayed()) {
               homePage.popUpCloseButton.click();
           }
@@ -77,12 +78,14 @@ public class US005_Add_Event_StepDefinitions {
         Assert.assertTrue(homePage.popUpForm.isDisplayed());
         BrowserUtils.sleep(2);
 
-        if (homePage.popUpForm.isDisplayed()) {
-            homePage.popUpCloseButton.click();
-        }
+        try{
+            BrowserUtils.sleep(1);
+            if (homePage.popUpForm.isDisplayed()) {
+                homePage.popUpCloseButton.click();
+            }
+        }catch (Exception e){}
 
     }
-
 
     //AC2
 
@@ -110,6 +113,7 @@ public class US005_Add_Event_StepDefinitions {
     @Then("User sees all compulsory fields")
     public void user_sees_all_compulsory_fields() {
         wait.until(ExpectedConditions.attributeToBe(homePage.loaderMasky, "class", "loader-mask"));
+        wait.until(ExpectedConditions.visibilityOf(homePage.popUpForm));
         BrowserUtils.sleep(2);
         Assert.assertTrue(homePage.popUpForm.isDisplayed());
 
