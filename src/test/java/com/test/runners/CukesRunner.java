@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
 
 
-        tags = "",
+        tags = "@Ac_1",
         plugin = {
                 //"pretty",
                 "html:target/reports/cucumber-report.html",
