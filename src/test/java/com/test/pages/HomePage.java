@@ -7,6 +7,9 @@ import java.util.List;
 
 public class HomePage extends BasePage{
 
+    /*************** HOME PAGE LOCATORS    ****************/
+
+
     @FindBy(xpath = "//h1[@class='oro-subtitle']")
     public WebElement homePageTitle;
 
@@ -34,7 +37,9 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//a[@title='Create Car']")
     public WebElement createCarButton;
 
-    //ADD EVENT COMPULSORY TITLES
+
+    /*************** ADD EVENT COMPULSORY TITLES   ****************/
+
 
     @FindBy(xpath = "(//div[@class='span6']//label)[1]")
     public WebElement titlePopUP;
@@ -55,7 +60,8 @@ public class HomePage extends BasePage{
     public WebElement endDatePopUP;
 
 
-    //ADD EVENT COMPULSORY FIELDs
+
+    /*************** ADD EVENT COMPULSORY FIELDS   ****************/
 
     @FindBy(name = "oro_calendar_event_form[title]")
     public WebElement titleInAddEventPopUp;
@@ -81,8 +87,8 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//button[.='Save']")
     public WebElement saveButtonPopUp;
 
-    //ADD EVENT COMPULSORY FIELDS ERROR MESSAGES
 
+    /*************** ADD EVENT COMPULSORY FIELDS ERROR MESSAGES ****************/
 
     @FindBy(xpath = "//input[@name='oro_calendar_event_form[title]']//..//span[.='This value should not be blank.']")
     public WebElement titleErrorMessage;
@@ -100,8 +106,7 @@ public class HomePage extends BasePage{
     public WebElement endTimeErrorMessage;
 
 
-
-    //methods
+    /*************** METHODS ****************/
 
 
     public String getTitle(String userType){

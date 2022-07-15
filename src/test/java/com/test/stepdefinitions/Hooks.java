@@ -1,12 +1,10 @@
 package com.test.stepdefinitions;
 
-import com.test.utilities.BrowserUtils;
 import com.test.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.apache.commons.io.FileUtils;
-import org.junit.Test;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
@@ -15,10 +13,6 @@ import java.io.IOException;
 
 public class Hooks {
 
-    @Test
-    public void someTest(){
-
-    }
 
 
     @Before
@@ -37,7 +31,7 @@ public class Hooks {
 
             try{
                 File file = ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.FILE);
-                FileUtils.copyFile(file,new File("\\/Users/values/IdeaProjects/XFleet_G21_Project/snaps"));
+                FileUtils.copyFile(file,new File("/Users/values/Desktop/Snaps"));
             }catch (IOException e){
 
             }

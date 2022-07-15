@@ -178,99 +178,6 @@ public class BrowserUtils {
         return result;
     }
 
-
-/*    *//**
-     * Accept text and click it.
-     * @param linkText
-     *//*
-
-    public static void clickLink(String linkText){
-
-        java.sql.Driver.getDriver().findElement(By.xpath("//*[.='"+linkText+"']")).click();
-
-    }
-
-    public static String getText(String text){
-
-        return Driver.getDriver().findElement(By.xpath("//*[.='"+text+"']")).getText();
-
-    }*/
-
-
-    /**
-     * this 2 methods getting username and passwords over oracle table
-     * @return
-     */
-
-
-    /*public static String getPasswordWithOracle() {
-
-        Random random = new Random();
-
-        List<String> passwords = new ArrayList<>();
-
-
-        String dbURL = ConfigurationReader.getProperty("dbURL");
-        String dbUserName = ConfigurationReader.getProperty("dbUserName");
-        String dbPassword = ConfigurationReader.getProperty("dbPassword");
-
-
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(dbURL,dbUserName,dbPassword);
-            Statement statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM XFLEET");
-
-
-
-            while (resultSet.next()){
-                passwords.add(resultSet.getString("PASS_WORD"));
-
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        return passwords.get(random.nextInt(passwords.size()));
-
-    }
-
-    public static String getUserNameWithOracle(){
-
-        Random random = new Random();
-
-        List<String> usernames = new ArrayList<>();
-
-
-        String dbURL = ConfigurationReader.getProperty("dbURL");
-        String dbUserName = ConfigurationReader.getProperty("dbUserName");
-        String dbPassword = ConfigurationReader.getProperty("dbPassword");
-
-
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(dbURL,dbUserName,dbPassword);
-            Statement statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM XFLEET");
-
-
-
-            while (resultSet.next()){
-                usernames.add(resultSet.getString("USER_NAME"));
-
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        return usernames.get(random.nextInt(usernames.size()));
-    }
-*/
-
-
-
     public static void windowHandle(WebDriver driver, String siteURL) {
 
         Set<String> windowHandles = driver.getWindowHandles();
@@ -285,12 +192,10 @@ public class BrowserUtils {
         }
     }
 
-
     public static WebElement getElement(WebDriver driver, String value){
 
         return driver.findElement(By.xpath("//*[contains(.,'"+value+"')]"));
     }
-
 
     public static Map<String,ContainerNetwork> networkCOMM(){
 

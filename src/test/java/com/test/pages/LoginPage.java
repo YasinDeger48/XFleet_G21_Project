@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
+    /*************** LOGIN PAGE LOCATORS    ****************/
+
 
     @FindBy(id = "prependedInput")
     public WebElement username;
@@ -19,7 +21,8 @@ public class LoginPage extends BasePage {
 
 
 
-    //METHODS
+    /*************** METHODS    ****************/
+
 
     public void login(String USERNAME, String PASSWORD) {
         username.sendKeys(USERNAME);
