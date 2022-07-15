@@ -63,22 +63,7 @@ public class Driver {
                     driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
 
-                case "sauce-lab-chrome":
 
-                    try {
-                        URL url = new URL("https://oauth-yasin.deger48-9835b:17350529-168c-4eb6-917a-4268216fb2f1@ondemand.eu-central-1.saucelabs.com:443/wd/hub");
-                        ChromeOptions browserOptions = new ChromeOptions();
-                        browserOptions.setCapability("platformName", "Windows 10");
-                        browserOptions.setCapability("browserVersion", "latest");
-                        Map<String, Object> sauceOptions = new HashMap<>();
-                        sauceOptions.put("build", "<XFleet>");
-                        sauceOptions.put("name", "<Login Test>");
-                        browserOptions.setCapability("sauce:options", sauceOptions);
-                        driverPool.set(new RemoteWebDriver(url, browserOptions));
-                    }catch (MalformedURLException e){
-                        e.printStackTrace();
-                    }
-                    break;
             }
 
         }
