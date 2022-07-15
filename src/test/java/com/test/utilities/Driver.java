@@ -1,11 +1,22 @@
 package com.test.utilities;
 
+import com.github.dockerjava.api.model.ContainerNetwork;
+import com.github.dockerjava.api.model.NetworkSettings;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.graph.Network;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverInfo;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.mobile.NetworkConnection;
+import org.openqa.selenium.net.NetworkUtils;
+import org.openqa.selenium.remote.Command;
+import org.openqa.selenium.remote.CommandExecutor;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.Response;
 import org.openqa.selenium.safari.SafariDriver;
 
 import java.net.MalformedURLException;
@@ -52,22 +63,7 @@ public class Driver {
                     driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
 
-                case "sauce-lab-chrome":
 
-                    try {
-                        URL url = new URL("https://oauth-yasin.deger48-9835b:17350529-168c-4eb6-917a-4268216fb2f1@ondemand.eu-central-1.saucelabs.com:443/wd/hub");
-                        ChromeOptions browserOptions = new ChromeOptions();
-                        browserOptions.setCapability("platformName", "Windows 10");
-                        browserOptions.setCapability("browserVersion", "latest");
-                        Map<String, Object> sauceOptions = new HashMap<>();
-                        sauceOptions.put("build", "<XFleet>");
-                        sauceOptions.put("name", "<Login Test>");
-                        browserOptions.setCapability("sauce:options", sauceOptions);
-                        driverPool.set(new RemoteWebDriver(url, browserOptions));
-                    }catch (MalformedURLException e){
-                        e.printStackTrace();
-                    }
-                    break;
             }
 
         }
