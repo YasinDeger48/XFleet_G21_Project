@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
 
 
-        tags = "",
+        tags = "@US010",
         plugin = {
                 //"pretty",
                 "html:target/reports/cucumber-report.html",
@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
                 "me.jvt.cucumber.report.PrettyReports:target/reports/cucumber"},
         features = "src/test/resources/features", //content -> features
         glue = "com/test/stepdefinitions", //source -> step definitions
-        dryRun = false,
+        dryRun = true,
 
         publish = false
 
