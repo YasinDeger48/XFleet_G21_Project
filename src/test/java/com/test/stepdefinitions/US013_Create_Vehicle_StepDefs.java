@@ -1,11 +1,13 @@
 package com.test.stepdefinitions;
 
 import com.test.pages.BasePage;
+import com.test.pages.CreateCarPage;
 import com.test.pages.HomePage;
 import com.test.pages.LoginPage;
 import com.test.utilities.ConfigurationReader;
 import com.test.utilities.Driver;
 import io.cucumber.java.bs.A;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -22,6 +24,7 @@ public class US013_Create_Vehicle_StepDefs {
 
     HomePage homePage = new HomePage();
     LoginPage loginPage = new LoginPage();
+    CreateCarPage createCarPage = new CreateCarPage();
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 15);
     Random random = new Random();
 
@@ -83,8 +86,21 @@ public class US013_Create_Vehicle_StepDefs {
 
     @Then("Create Car button should be displayed")
     public void create_car_button_should_be_displayed() {
-        wait.until(ExpectedConditions.attributeToBe(homePage.loaderMasky, "class", "loader-mask"));
+        wait.until(ExpectedConditions.visibilityOf(homePage.createCarButton));
         Assert.assertTrue(homePage.createCarButton.isDisplayed());
+    }
+
+    //AC3
+
+    @And("Store_Sales Manager clicks Create Car")
+    public void store_salesManagerClicksCreateCar() {
+        wait.until(ExpectedConditions.attributeToBe(homePage.loaderMasky, "class", "loader-mask"));
+        homePage.createCarButton.click();
+    }
+
+    @Then("Store_Sales Manager is on Create Car Page")
+    public void store_salesManagerIsOnCreateCarPage() {
+       Assert.assertTrue(createCarPage.createCarTitle.isDisplayed());
     }
 
 

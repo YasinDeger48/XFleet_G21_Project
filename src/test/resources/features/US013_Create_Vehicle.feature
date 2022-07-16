@@ -8,11 +8,17 @@ Feature: Creating Car
     And Truck Driver clicks Vehicles
     Then Create Car button shouldn't be displayed
 
-  @wip
-    Scenario: "Create Car" button should be displayed for Store /Sales Manager
+
+  Scenario: "Create Car" button should be displayed and user should land in the "Create Car" page
     Given Store_Sales Manager is on the login page
     When Store_Sales Manager enters valid credentials
     Then Store_Sales Manager sees Xfleet Homepage
     And Store_Sales Manager clicks Fleet
     And Store_Sales Manager clicks Vehicles
     Then Create Car button should be displayed
+    And Store_Sales Manager clicks Create Car
+    Then Store_Sales Manager is on Create Car Page
+
+
+
+
