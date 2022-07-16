@@ -6,9 +6,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import java.io.FileInputStream;
-import java.sql.Driver;
+
 import java.sql.*;
 import java.util.*;
 
@@ -203,5 +204,16 @@ public class BrowserUtils {
 
         return app;
     }
-
+    public static void hover_Over(WebElement element){
+        Actions actions = new Actions(Driver.getDriver());
+        BrowserUtils.sleep(2);
+        actions.moveToElement(element).perform();
+    }
+    public static void hover_Over_And_Click(WebElement element){
+        Actions actions = new Actions(Driver.getDriver());
+        BrowserUtils.sleep(2);
+        actions.moveToElement(element).perform();
+        BrowserUtils.sleep(2);
+        element.click();
+    }
 }
