@@ -3,7 +3,7 @@ package com.test.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class VehiclePage {
+public class VehiclePage extends BasePage{
 
 
     @FindBy(xpath = "//button[@class='btn dropdown-toggle ']")
@@ -20,6 +20,18 @@ public class VehiclePage {
 
     @FindBy(xpath = "//a[@data-size='100']")
     public WebElement dropdown100;
+
+    @FindBy(xpath = "//tr[10]")
+    public WebElement tenthRow;
+
+    @FindBy(xpath = "//tr[25]")
+    public WebElement twentyfifthRow;
+
+    @FindBy(xpath = "//tr[50]")
+    public WebElement fiftiethRow;
+
+    @FindBy(xpath = "//tr[58]")
+    public WebElement lastRow;
 
     @FindBy(xpath = "(//span[.='License Plate'])[1]")
     public WebElement licencePlateColumnTag;
@@ -75,5 +87,9 @@ public class VehiclePage {
 
     @FindBy(xpath = " (//span[.='Power (kW)'])[1]")
     public WebElement powerColumnTag;
+
+
+
+
 
 }
