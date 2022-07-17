@@ -80,7 +80,7 @@ Feature: Grid Settings
       | driver      |
       | number      |
 
-  @US010 @AC-4 @wip
+  @US010 @AC-4
   Scenario: User can select any column by clicking the column name
     When User hover over the fleet button
     And User sees Vehicles button and click it
@@ -88,6 +88,14 @@ Feature: Grid Settings
     And User clicks gear icon
     Then User clicks on "Id" and Selection state should change after clicking
 
+  @US010 @AC-5 @wip
+  Scenario: User can arrange the order of the columns (by dragging and dropping)
+    When User hover over the fleet button
+    And User sees Vehicles button and click it
+    And User sees Vehicle Table pages
+    And User clicks gear icon
+    And User clicks and holds the arrow on "Model Year" row and drags and drops on "Horsepower" row
+    Then Column order of "Model Year" should change
 
 
 
