@@ -1,8 +1,12 @@
 package com.test.pages;
 
+import com.test.utilities.Driver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.awt.dnd.DragGestureEvent;
 import java.util.List;
 
 public class HomePage extends BasePage{
@@ -125,4 +129,16 @@ public class HomePage extends BasePage{
         }
         return response;
 }
+
+
+    public boolean isElementPresent(WebElement element){
+        try{
+            element.isDisplayed();
+            return true;
+        }
+        catch(NoSuchElementException e){
+            return false;
+        }
+    }
+
 }
