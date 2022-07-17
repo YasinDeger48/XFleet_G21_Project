@@ -30,6 +30,10 @@ public class AllCarsPage extends BasePage{
     @FindBy(xpath = "//span[@class='column-filter-match']")
     public List<WebElement> shownColumns;
 
+
+    @FindBy(xpath = "//tr/th/a/span[@class='grid-header-cell__label']")
+    public List<WebElement> allCarsPageColumnHeaders;
+
     /*************** ALL CARS PAGE METHODS    ****************/
 
     public WebElement correspondingArrowOnTable(String columnName) {
@@ -49,6 +53,19 @@ public class AllCarsPage extends BasePage{
 
         return elementsInSettings.indexOf(columnName);
 
+    }
 
+    public List<String> allCarsPageColumnNames() {
+        List<String> allCarsPageColumnNames = new ArrayList<>();
+
+        for (int i = 0; i < allCarsPageColumnHeaders.size()/2; i++) {
+            allCarsPageColumnNames.add(allCarsPageColumnHeaders.get(i).getText());
+        }
+
+        return allCarsPageColumnNames;
+    }
+
+    public int indexOfColumn (String columnName) {
+        return allCarsPageColumnNames().indexOf(columnName);
     }
 }

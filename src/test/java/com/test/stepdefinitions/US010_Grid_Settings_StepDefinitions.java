@@ -80,11 +80,13 @@ public class US010_Grid_Settings_StepDefinitions {
     }
 
     int initialIndexOfMovingElement;
+    int initialIndexOfMovingColumn;
 
     @And("User clicks and holds the arrow on {string} row and drags and drops on {string} row")
     public void userMovesRowAboveRow(String columnName, String newColumnName) {
 
         initialIndexOfMovingElement = allCarsPage.orderOfTheElement(columnName);
+        initialIndexOfMovingColumn = allCarsPage.indexOfColumn(columnName.toUpperCase());
 
         WebElement correspondingArrow = allCarsPage.correspondingArrowOnTable(columnName);
         WebElement newLocation = allCarsPage.correspondingArrowOnTable(newColumnName);
@@ -99,10 +101,22 @@ public class US010_Grid_Settings_StepDefinitions {
     @Then("Column order of {string} should change")
     public void columnOrderOfShouldChange(String columnName) {
 
-        BrowserUtils.sleep(2);
+        BrowserUtils.sleep(1);
 
         int lastIndexOfMovingElement = allCarsPage.orderOfTheElement(columnName);
 
         Assert.assertNotEquals(initialIndexOfMovingElement, lastIndexOfMovingElement);
     }
-}
+
+
+    @Then("Column order of {string} under Fleet-Vehicles page should also change")
+    public void columnOrderUnderFleetVehiclesPageShouldAlsoChange(String columnName) {
+
+        BrowserUtils.sleep(1);
+
+        int lastIndexOfMovingColumn = allCarsPage.indexOfColumn(columnName.toUpperCase());
+
+        Assert.assertNotEquals(initialIndexOfMovingColumn, lastIndexOfMovingColumn);
+        }
+    }
+

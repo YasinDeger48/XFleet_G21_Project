@@ -4,6 +4,8 @@ import com.test.utilities.ConfigurationReader;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class LoginPage extends BasePage {
 
     /*************** LOGIN PAGE LOCATORS    ****************/

@@ -20,7 +20,7 @@ public class Hooks {
         Driver.getDriver().manage().deleteAllCookies();
     }
 
-    //@After
+    @After
     public void tearDown(Scenario scenario){
 
         if (scenario.isFailed()){
