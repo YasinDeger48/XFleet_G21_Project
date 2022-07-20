@@ -14,4 +14,3 @@ Feature: Vehicle General Information
     When user enters username as driver
     And user enters password as driver
     Then user should see drivers' dashboard
-
