@@ -1,25 +1,15 @@
 package com.test.stepdefinitions;
 
 
-import com.zaxxer.sparsebits.SparseBitSet;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.bouncycastle.jcajce.provider.symmetric.IDEA;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 
 
 public class US012_Last_Odometer_Filter {
 
     // AC-1
-    @Given("user is already logged as a {string}")
-    public void user_is_already_logged_as_a(String usertype) {
-
-
-
-    }
-
     @When("user hover over on Fleet button and clicks to Vehicles")
     public void user_hover_over_on_fleet_button_and_clicks_to_vehicles() {
 

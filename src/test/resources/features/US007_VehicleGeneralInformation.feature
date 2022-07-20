@@ -2,7 +2,6 @@ Feature: Vehicle General Information
   User Story :
   As a user, I should be able to see the detailed information of a specific vehicle (General Information Page)
 
-@US007
   Background:For the scenarios in the feature file, user is expected to be on login page
     Given Store manager/sales manager is on the login page
 
