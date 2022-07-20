@@ -120,6 +120,12 @@ public class LoginStepDefinitions {
 
         new LoginPage().login(ExcelRead.getRandomValidUsername(), ConfigurationReader.getProperty("password"));
     }
+
+    @Given("user is already logged as a {string}")
+    public void user_is_already_logged_as_a(String usertype) {
+        Driver.getDriver().get(ConfigurationReader.getProperty("web.site"));
+        loginPage.signIn(usertype);
+    }
 }
 
 

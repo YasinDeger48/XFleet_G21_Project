@@ -9,6 +9,7 @@ Feature: Vehicle table view
   4- User can see total recordings of vehicles
   5- User can download table data in XLS or CSV format from "Export Grid" (a confirmation message is enough to validate)
 
+  @FLTAPS-1978
   Scenario Outline: All user types can see all vehicle information under 'Fleet-Vehicles' module
     Given user is already logged as a "<usertype>"
     When user hover over to Fleet button and clicks to Vehicles
@@ -19,6 +20,7 @@ Feature: Vehicle table view
       | Sales Manager |
       | Store Manager |
 
+  @FLTAPS-1979
   Scenario Outline: User can see the total page number
     Given user is already logged as a "<usertype>"
     When user hover over to Fleet button and clicks to Vehicles
@@ -29,12 +31,13 @@ Feature: Vehicle table view
       | Sales Manager |
       | Store Manager |
 
+  @FLTAPS-1980
   Scenario Outline: User can go to next page clicking ">" button and can go to previous page clicking "<" button
     Given user is already logged as a "<usertype>"
     When user hover over to Fleet button and clicks to Vehicles
-    And user clicks > button
+    And user clicks page forward button
     Then user should land on next page
-    And user clicks > button
+    And user clicks page backward button
     Then user should land on previous page
     Examples:
       | usertype      |
@@ -42,6 +45,7 @@ Feature: Vehicle table view
       | Sales Manager |
       | Store Manager |
 
+  @FLTAPS-1981
   Scenario Outline: User can see total recordings of vehicles
     Given user is already logged as a "<usertype>"
     When user hover over to Fleet button and clicks to Vehicles
@@ -52,10 +56,11 @@ Feature: Vehicle table view
       | Sales Manager |
       | Store Manager |
 
-  Scenario Outline: User can download table data in XLS or CSV format from "Export Grid" (a confirmation message is enough to validate)
+  @FLTAPS-1982
+  Scenario Outline: User can download table data in XLSX or CSV format from "Export Grid" (a confirmation message is enough to validate)
     Given user is already logged as a "<usertype>"
     When user hover over to Fleet button and clicks to Vehicles
-    And user clicks to Export Grid button and select "XLS" format
+    And user clicks to Export Grid button and select "XLSX" format
     Then user should see a confirmation message
     Examples:
       | usertype      |

@@ -1,5 +1,7 @@
 package com.test.pages;
 
+import com.test.utilities.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -98,4 +100,32 @@ public class VehiclePage extends BasePage{
 
     @FindBy(xpath = "//input[@title='Location']")
     public WebElement locationFilterCheckBox;
+
+    @FindBy(xpath = "//thead[@class='grid-header']/tr")
+    public WebElement vehicleTableColumnHeaders;
+
+    @FindBy(xpath = "//label[@class='dib'][2]")
+    public WebElement totalPageNumber;
+
+    @FindBy(xpath = "//i[@class='fa-chevron-right hide-text']")
+    public WebElement pageForwardButton;
+
+    @FindBy(xpath = "//i[@class='fa-chevron-left hide-text']")
+    public WebElement pageBackwardButton;
+
+    @FindBy(xpath = "//input[@type='number']")
+    public WebElement currentPageNumber;
+
+    @FindBy(xpath = "//div[@class='pagination pagination-centered']/label[3]")
+    public WebElement totalRecordingsOfVehicle;
+
+    @FindBy(xpath = "//div[@class='btn-group']/div")
+    public WebElement exportGridButton;
+
+    @FindBy(xpath = "//div[@class='message']")
+    public WebElement downloadConfirmationMessage;
+
+    public WebElement downloadableTableDataFormatSelection(String formatType){
+        return Driver.getDriver().findElement(By.linkText(formatType));
+    }
 }
