@@ -4,6 +4,7 @@ import com.test.pages.HomePage;
 import com.test.pages.LoginPage;
 import com.test.utilities.ConfigurationReader;
 import com.test.utilities.Driver;
+import com.test.utilities.ExcelRead;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -112,6 +113,19 @@ public class LoginStepDefinitions {
     }
 
 
+    @Given("User logs in with random credentials")
+    public void UserLogsInWithRandomCredentials() {
+
+        Driver.getDriver().get(ConfigurationReader.getProperty("web.site"));
+
+        new LoginPage().login(ExcelRead.getRandomValidUsername(), ConfigurationReader.getProperty("password"));
+    }
+
+    @Given("user is already logged as a {string}")
+    public void user_is_already_logged_as_a(String usertype) {
+        Driver.getDriver().get(ConfigurationReader.getProperty("web.site"));
+        loginPage.signIn(usertype);
+    }
 }
 
 

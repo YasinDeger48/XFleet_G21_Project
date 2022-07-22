@@ -23,6 +23,7 @@ public abstract class BasePage {
     protected WebElement loaderMask;
 
     //other locator for loader-mask (attribute to be)
+
     @FindBy(xpath = "//body/div[4]")
     public WebElement loaderMasky;
 
