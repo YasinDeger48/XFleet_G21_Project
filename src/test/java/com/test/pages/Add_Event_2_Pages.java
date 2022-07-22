@@ -50,8 +50,8 @@ public class Add_Event_2_Pages extends BasePage {
     public WebElement repeatButtun;
 
 
-    @FindBy(xpath = " (//select[@id='recurrence-repeats-view1884'])/option")
-    public List<WebElement> repeatsSelectButton;
+    @FindBy(xpath = "//option[.='Weekly']")
+    public WebElement repeatsSelectButton;
 
     @FindBy(xpath = "(//input[@type='text'])[2]")
     public WebElement titleTextBox;
@@ -60,7 +60,8 @@ public class Add_Event_2_Pages extends BasePage {
     @FindBy(xpath = "//button[@type='submit']")
     public WebElement saveButton;
 
-
+@FindBy(xpath = "(//div[@class='extra-info'])[1]")
+    public WebElement verifyGeneralInformation;
 
 
 }

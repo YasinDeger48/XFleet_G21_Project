@@ -76,6 +76,6 @@ Feature: User is on the XFleet
     When User should be able to access the Add Event page
     And  User clicks All-day event
     And  User clicks Repeat checkbox
-    And User enters a title
+    And User enters a title "savcı"
     And User clicks save button
     And  User should be able to see  all events on the General information page

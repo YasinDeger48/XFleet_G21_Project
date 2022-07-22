@@ -10,6 +10,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
@@ -119,42 +120,48 @@ public class Add_Event_2 {
 
     @When("User should be able to chose belowe \\(repeats dropdown menu) Daily, Weekly, Monthly, Yearly")
     public void user_should_be_able_to_chose_belowe_repeats_dropdown_menu_daily_weekly_monthly_yearly() {
-
-        int randomNumbers = random.nextInt(add_Event_2_Pages.repeatsSelectButton.size());
         BrowserUtils.sleep(3);
-        Select select = new Select(add_Event_2_Pages.repeatsSelectButton.get(randomNumbers));
-        select.selectByIndex(randomNumbers);
+
+
+            Select select = new Select(Driver.getDriver().findElement(By.xpath("(//select)[2]")));
+            select.selectByVisibleText("Weekly");
+
+
 
     }
 
     @When("User should be able to click Ending options Never After By")
     public void user_should_be_able_to_click_ending_options_never_after_by() {
-        for (int i = 3; i <=5; i++){
-            Select select = new Select(Driver.getDriver().findElement(By.xpath("(//input[@type='radio'])[i]")));
-            select.selectByIndex(i);
-        }
+        BrowserUtils.sleep(3);
+        WebElement element = Driver.getDriver().findElement(By.xpath("(//input[@type='radio'])[3]"));
+        element.click();
     }
 
+    String expectedTitle;
 
-
-    @And("User enters a title")
-    public void userEntersATitle() {
+    @And("User enters a title {string}")
+    public void userEntersATitle(String title) {
+        expectedTitle=title;
         BrowserUtils.sleep(3);
-        add_Event_2_Pages.titleTextBox.sendKeys("rocket");
+        add_Event_2_Pages.titleTextBox.sendKeys(title);
     }
 
     @And("User clicks save button")
     public void userClicksSaveButton() {
         BrowserUtils.sleep(3);
         add_Event_2_Pages.saveButton.click();
+        BrowserUtils.sleep(3);
     }
 
 
     @When("User should be able to see  all events on the General information page")
+
     public void user_should_be_able_to_see_all_events_on_the_general_information_page() {
-
-
-
-
+        System.out.println("expectedTitle = " + expectedTitle);
+      //  Assert.assertTrue(add_Event_2_Pages.verifyGeneralInformation.getText().equals(expectedTitle));
+        BrowserUtils.sleep(3);
+        String actual = add_Event_2_Pages.verifyGeneralInformation.getText();
+        System.out.println("actual = " + actual);
+        Assert.assertTrue(actual.contains(expectedTitle));
     }
 }
