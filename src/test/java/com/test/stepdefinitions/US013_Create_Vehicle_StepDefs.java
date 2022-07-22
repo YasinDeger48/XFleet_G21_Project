@@ -1,5 +1,6 @@
 package com.test.stepdefinitions;
 
+import com.github.javafaker.Faker;
 import com.test.pages.BasePage;
 import com.test.pages.CreateCarPage;
 import com.test.pages.HomePage;
@@ -12,9 +13,14 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.w3c.dom.ls.LSOutput;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Random;
 
@@ -27,6 +33,9 @@ public class US013_Create_Vehicle_StepDefs {
     CreateCarPage createCarPage = new CreateCarPage();
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 15);
     Random random = new Random();
+    Faker faker = new Faker();
+
+
 
     //AC1
 
@@ -76,6 +85,7 @@ public class US013_Create_Vehicle_StepDefs {
 
     @Then("Store_Sales Manager clicks Fleet")
     public void store_sales_manager_clicks_fleet() {
+        wait.until(ExpectedConditions.attributeToBe(homePage.loaderMasky, "class", "loader-mask"));
         homePage.fleetButton.click();
     }
 
@@ -100,8 +110,101 @@ public class US013_Create_Vehicle_StepDefs {
 
     @Then("Store_Sales Manager is on Create Car Page")
     public void store_salesManagerIsOnCreateCarPage() {
-       Assert.assertTrue(createCarPage.createCarTitle.isDisplayed());
+        Assert.assertTrue(createCarPage.createCarTitle.isDisplayed());
     }
 
+    //AC4
 
+    @Then("User should see below info in tags checkBoxes")
+    public void userShouldSeeBelowInfoInTagsCheckBoxes(List<String> expectedTags) {
+        List<String> actualTags = new ArrayList<>();
+        for (WebElement each : createCarPage.tags) {
+            actualTags.add(each.getText().trim());
+        }
+        Assert.assertEquals(expectedTags, actualTags);
+    }
+
+    @Then("User should see {string} in {string}")
+    public void userShouldSeeIn(String entries, String determinedStructure) {
+
+        wait.until(ExpectedConditions.attributeToBe(homePage.loaderMasky, "class", "loader-mask"));
+
+        switch (determinedStructure) {
+            case "alpha-numerical":
+                if ((entries.equals("licensePlate"))) {
+                    createCarPage.licensePlate.sendKeys(faker.bothify("?#?#?#?#?#"));
+                } else if (entries.equals("chassisNumber")) {
+                    createCarPage.chassisNumber.sendKeys(faker.bothify("?#?#?#?#?#??##"));
+                }
+                break;
+            case "alphabetical":
+                switch (entries) {
+                    case "driver":
+                        createCarPage.driverAtCreateCar.sendKeys(faker.name().fullName());
+                        break;
+                    case "location":
+                        createCarPage.location.sendKeys(faker.address().country());
+                        break;
+                    case "colour":
+                        createCarPage.color.sendKeys(faker.color().name());
+                        break;
+                }
+                break;
+            case "numerical":
+                switch (entries) {
+                    case "modelYear":
+                        createCarPage.modelYear.sendKeys(faker.number().numberBetween(1900,2022)+"");
+                        break;
+                    case "lastOdometer":
+                        createCarPage.lastOdometer.sendKeys(faker.number().numberBetween(0,999999999)+"");
+                        break;
+                    case "catalogValue":
+                        createCarPage.catalogValue.sendKeys(faker.number().randomDouble(2,1000,9999999)+"");
+                        break;
+                    case "seatNumber":
+                        createCarPage.seatsNumber.sendKeys(faker.numerify("?"));
+                        break;
+                    case "doorsNumber":
+                        createCarPage.doorsNumber.sendKeys(faker.number().numberBetween(2,5)+"");
+                        break;
+                    case "co2Emission":
+                        createCarPage.co2.sendKeys(faker.number().numberBetween(1,100)+"");
+                        break;
+                    case "horsepower":
+                        createCarPage.hp.sendKeys(faker.number().numberBetween(50,500)+"");
+                        break;
+                    case "horsepowerTaxation":
+                        createCarPage.hpTax.sendKeys(faker.number().randomDouble(1,2,32)+"");
+                        break;
+                    case "power":
+                        createCarPage.power.sendKeys(faker.number().numberBetween(75,820)+"");
+                        break;
+                }
+                break;
+            case "date":
+                switch (entries) {
+                    case "immatriculationDate":
+                        createCarPage.selectRandomDate("immatriculationDate");
+                        break;
+                    case "firstContractDate":
+                        createCarPage.selectRandomDate("firstContractDate");
+                        break;
+                } break;
+        }
+
+    }
+/*
+    @Then("User should see below info in transmission dropdown")
+    public void userShouldSeeBelowInfoInTransmissionDropdown() {
+
+    }
+
+    @Then("User should see below info in fuelType dropdown")
+    public void userShouldSeeBelowInfoInFuelTypeDropdown() {
+
+    }
+
+    @Then("Image is uploaded in JPEG or PNG format")
+    public void imageIsUploadedInJPEGOrPNGFormat() {
+    }*/
 }
