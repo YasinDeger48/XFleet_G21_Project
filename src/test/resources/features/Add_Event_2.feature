@@ -1,3 +1,4 @@
+@AddEvent_2
 Feature: User is on the XFleet
 
   Background: Sales Manager Login
@@ -19,7 +20,7 @@ Feature: User is on the XFleet
   Scenario: After clicking on "Add event" button, "Add Event" page should pop up.
     When User hover over the Fleet
     And  User clicks the Vehicles button
-    And  User clicks any vehicle/row under Fleet-Vehicle module
+    And  User clicks any vehiclerow under Fleet-Vehicle module
     Then User should be able to see the Add Event buton
     And  User clicks Add Event buttun
     When User should be able to access the Add Event page
@@ -28,17 +29,18 @@ Feature: User is on the XFleet
   Scenario:  User can mark the event with any colour
     When User hover over the Fleet
     And  User clicks the Vehicles button
-    And  User clicks any vehicle/row under Fleet-Vehicle module
+    And  User clicks any vehiclerow under Fleet-Vehicle module
     Then User should be able to see the Add Event buton
     And  User clicks Add Event buttun
     When User should be able to access the Add Event page
     And User marks the event with any colour
+    Then User should be able to see that colorButton is select
 
   @Ac_4
   Scenario: User can click "All-day event" check box and after click time boxes will disappear
     When User hover over the Fleet
     And  User clicks the Vehicles button
-    And  User clicks any vehicle/row under Fleet-Vehicle module
+    And  User clicks any vehiclerow under Fleet-Vehicle module
     Then User should be able to see the Add Event buton
     And  User clicks Add Event buttun
     When User should be able to access the Add Event page
@@ -55,7 +57,7 @@ Feature: User is on the XFleet
   -> "By"
     When User hover over the Fleet
     And  User clicks the Vehicles button
-    And  User clicks any vehicle/row under Fleet-Vehicle module
+    And  User clicks any vehiclerow under Fleet-Vehicle module
     Then User should be able to see the Add Event buton
     And  User clicks Add Event buttun
     When User should be able to access the Add Event page
@@ -65,9 +67,15 @@ Feature: User is on the XFleet
     And  User should be able to click Ending options Never After By
 
 
-  @Ac_5
+  @Ac_6
   Scenario: All Users can see all events on the General information page
     When User hover over the Fleet
     And  User clicks the Vehicles button
-    And  User clicks any vehicle/row under Fleet-Vehicle module
+    And  User clicks any vehiclerow under Fleet-Vehicle module
+    And  User clicks Add Event buttun
+    When User should be able to access the Add Event page
+    And  User clicks All-day event
+    And  User clicks Repeat checkbox
+    And User enters a title
+    And User clicks save button
     And  User should be able to see  all events on the General information page
