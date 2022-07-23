@@ -7,12 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class Add_Event_2_Pages {
+public class Add_Event_2_Pages extends BasePage {
 
-    public Add_Event_2_Pages() {
-
-        PageFactory.initElements(Driver.getDriver(),this);
-    }
 
     @FindBy(xpath = "(//li[@class='dropdown dropdown-level-1'])[1]")
     public WebElement fleet;
@@ -29,4 +25,43 @@ public class Add_Event_2_Pages {
 
     @FindBy(xpath = "(//table/tbody/tr)")
     public List<WebElement> carsTable;
+
+
+    @FindBy(xpath = " //span[@class='ui-dialog-title']")
+    public List<WebElement> addEventPage;
+
+
+    @FindBy(xpath = "(//span[@class='color'])")
+    public List<WebElement> colortable;
+
+
+    @FindBy(xpath = "//span[@data-selected]")
+    public WebElement checkedColor;
+
+
+    @FindBy(xpath = "(//input[@type='checkbox'])[2]")
+    public WebElement allDayEventButton;
+
+
+    @FindBy(xpath = "(//input[@placeholder='time'])[1]")
+    public WebElement start_and_endTime;
+
+    @FindBy(xpath = "(//input[@type='checkbox'])[3]")
+    public WebElement repeatButtun;
+
+
+    @FindBy(xpath = "//option[.='Weekly']")
+    public WebElement repeatsSelectButton;
+
+    @FindBy(xpath = "(//input[@type='text'])[2]")
+    public WebElement titleTextBox;
+
+
+    @FindBy(xpath = "//button[@type='submit']")
+    public WebElement saveButton;
+
+@FindBy(xpath = "(//div[@class='extra-info'])[1]")
+    public WebElement verifyGeneralInformation;
+
+
 }

@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
 
 
+        tags = "@AddEvent_2",
         plugin = {
                 //"pretty",
                 "html:target/reports/cucumber-report.html",
@@ -18,7 +19,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features", //content -> features
         glue = "com/test/stepdefinitions", //source -> step definitions
         dryRun = false,
-        tags = "@US005",
+
         publish = false
 
 )
