@@ -38,7 +38,7 @@ public class Driver {
 
         if (driverPool.get() == null) {
 
-            String browser = ConfigurationReader.getProperty("grid.remote");
+            String browser = ConfigurationReader.getProperty("browser");
 
             switch (browser) {
                 case "chrome":
