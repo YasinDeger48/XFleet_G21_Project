@@ -18,25 +18,6 @@ Feature: Smoke Tests
         | Store Manager |
         | Truck Driver  |
 
-    @FLTAPS-1944
-    Scenario Outline: User clicks save button without filled the compulsory fields and see the error message
-      Given "<UserType>" is on the login page
-      When "<UserType>" enters valid credentials
-      Then "<UserType>" sees Xfleet Homepage
-      And User hover over the fleet button
-      And User sees Vehicles button and click it
-      Then User sees Vehicle Table pages
-      And User clicks the random vehicles
-      Then User sees the "General Information" page
-      And User clicks the "Add Event" button
-      And User sees all compulsory fields
-      Then User checks error message without inputs one by one (compulsory fields)
-
-      Examples: User Types for checking compulsory fields
-        | UserType      |
-        | Sales Manager |
-        | Store Manager |
-        | Truck Driver  |
 
 
     @FLTAPS-1978
