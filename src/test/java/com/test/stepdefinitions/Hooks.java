@@ -29,12 +29,6 @@ public class Hooks {
             byte[] snap = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(snap,"image/png",scenario.getName());
 
-            try{
-                File file = ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.FILE);
-                FileUtils.copyFile(file,new File("/Users/values/Desktop/Snaps"));
-            }catch (IOException e){
-
-            }
         }
 
         Driver.closeDriver();
