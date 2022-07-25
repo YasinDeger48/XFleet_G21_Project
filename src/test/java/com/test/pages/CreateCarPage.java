@@ -80,6 +80,12 @@ public class CreateCarPage extends BasePage {
     @FindBy(xpath = "//a[@class='ui-state-default']")
     public List<WebElement> dateDayList;
 
+    @FindBy(xpath = "//select[@name='custom_entity_type[Transmission]']")
+    public WebElement transmission;
+
+    @FindBy(xpath = "//select[@name='custom_entity_type[FuelType]']")
+    public WebElement fuelType;
+
     public void selectRandomDate(String entry) {
 
         switch (entry) {

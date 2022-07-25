@@ -13,16 +13,19 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.w3c.dom.ls.LSOutput;
 
-import java.util.ArrayList;
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.util.*;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 
@@ -193,18 +196,41 @@ public class US013_Create_Vehicle_StepDefs {
         }
 
     }
-/*
-    @Then("User should see below info in transmission dropdown")
-    public void userShouldSeeBelowInfoInTransmissionDropdown() {
 
-    }
+    @Then("User should see below info in transmission dropdown")
+    public void userShouldSeeBelowInfoInTransmissionDropdown(List<String> expectedTransmission) {
+        List<String> actualTransmission = new ArrayList<>();
+        Select select = new Select(createCarPage.transmission);
+        for (WebElement each : select.getOptions()) {
+            actualTransmission.add(each.getText());
+        }
+        Assert.assertTrue(actualTransmission.containsAll(expectedTransmission));
+        }
 
     @Then("User should see below info in fuelType dropdown")
-    public void userShouldSeeBelowInfoInFuelTypeDropdown() {
-
+    public void userShouldSeeBelowInfoInFuelTypeDropdown(List<String> expectedFuelType) {
+        List<String> actualFuelType = new ArrayList<>();
+        Select select = new Select(createCarPage.fuelType);
+        for (WebElement each : select.getOptions()) {
+            actualFuelType.add(each.getText());
+        }
+        Assert.assertTrue(actualFuelType.containsAll(expectedFuelType));
     }
 
     @Then("Image is uploaded in JPEG or PNG format")
-    public void imageIsUploadedInJPEGOrPNGFormat() {
-    }*/
+    public void imageIsUploadedInJPEGOrPNGFormat() throws AWTException {
+        String file = "D:\\MASAÜSTÜ\\ARABALAR\\3008\\2.JPG";
+        StringSelection stringSelection = new StringSelection(file);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+
+        Robot robot = new Robot();
+
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
+    }
 }

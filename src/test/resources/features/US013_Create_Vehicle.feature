@@ -9,8 +9,9 @@ Feature: Creating Car
     And Truck Driver clicks Vehicles
     Then Create Car button shouldn't be displayed
 
-  # AC2 # AC3
-  Scenario: "Create Car" button should be displayed and user should land in the "Create Car" page
+  @wip # AC2 # AC3 # AC4
+  Scenario Outline: "Create Car" button should be displayed and user should land in the "Create Car" page
+  Form data structure should be as defined
     Given Store_Sales Manager is on the login page
     When Store_Sales Manager enters valid credentials
     Then Store_Sales Manager sees Xfleet Homepage
@@ -19,14 +20,6 @@ Feature: Creating Car
     Then Create Car button should be displayed
     And Store_Sales Manager clicks Create Car
     Then Store_Sales Manager is on Create Car Page
-
-  @wip  # AC4
-  Scenario Outline: Form data structure should be as defined
-    Given Store_Sales Manager is on the login page
-    When Store_Sales Manager enters valid credentials
-    And Store_Sales Manager clicks Fleet
-    And Store_Sales Manager clicks Vehicles
-    And Store_Sales Manager clicks Create Car
     Then User should see below info in tags checkBoxes
       | Junior       |
       | Senior       |
@@ -36,6 +29,16 @@ Feature: Creating Car
       | Sedan        |
       | Convertible  |
     Then User should see "<entries>" in "<determinedStructure>"
+    Then User should see below info in transmission dropdown
+      | Manual    |
+      | Automatic |
+    Then User should see below info in fuelType dropdown
+      | Gasoline |
+      | Diesel   |
+      | Electric |
+      | Hybrid   |
+    Then Image is uploaded in JPEG or PNG format
+
     Examples:
       | entries             | determinedStructure |
       | licensePlate        | alpha-numerical     |
@@ -54,15 +57,6 @@ Feature: Creating Car
       | horsepower          | numerical           |
       | horsepowerTaxation  | numerical           |
       | power               | numerical           |
- #   Then User should see below info in transmission dropdown
- #     | Automatic |
- #     | Manual    |
- #   Then User should see below info in fuelType dropdown
- #     | Gasoline |
- #     | Diesel   |
- #     | Electric |
- #     | Hybrid   |
- #   Then Image is uploaded in JPEG or PNG format
 
 
 
