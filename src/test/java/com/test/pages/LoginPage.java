@@ -5,6 +5,8 @@ import com.test.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class LoginPage extends BasePage {
 
     /*************** LOGIN PAGE LOCATORS    ****************/

@@ -20,9 +20,9 @@ public class US005_Add_Event_StepDefinitions {
 
     @Then("User hover over the fleet button")
     public void user_hover_over_the_fleet_button() {
-
+        wait.until(ExpectedConditions.attributeToBe(homePage.loaderMasky, "class", "loader-mask"));
       try{
-          BrowserUtils.sleep(1);
+          BrowserUtils.sleep(2);
           if (homePage.popUpForm.isDisplayed()) {
               homePage.popUpCloseButton.click();
           }
@@ -67,7 +67,8 @@ public class US005_Add_Event_StepDefinitions {
 
     @Then("User clicks the {string} button")
     public void user_clicks_the_button(String string) {
-        BrowserUtils.sleep(1);
+        BrowserUtils.sleep(2);
+        wait.until(ExpectedConditions.elementToBeClickable(homePage.addEventButton));
         homePage.addEventButton.click();
     }
 
