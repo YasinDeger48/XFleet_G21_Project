@@ -62,46 +62,7 @@ public class Driver {
                     driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
 
-                case "standalone-grid":
 
-                    try {
-                        WebDriverManager.chromedriver().setup();
-                        ChromeOptions chromeOptions = new ChromeOptions();
-                        driverPool.set(new RemoteWebDriver(new URL("http://192.168.1.105:4444"), chromeOptions));
-                        driverPool.get().manage().window().maximize();
-                        driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                    break;
-
-                case "grid-remote-chrome":
-                    String gridAdress = "35.171.6.92";
-                    try {
-                        URL url = new URL("http://"+gridAdress+":4444/wd/hub");
-                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-                        desiredCapabilities.setBrowserName("chrome");
-                        driverPool.set(new RemoteWebDriver(url,desiredCapabilities));
-                        driverPool.get().manage().window().maximize();
-                        driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                    break;
-
-                case "grid-remote-firefox":
-                    String gridAddress = "35.171.6.92";
-                    try {
-                        URL url = new URL("http://"+gridAddress+":4444/wd/hub");
-                        DesiredCapabilities desiredCapability = new DesiredCapabilities();
-                        desiredCapability.setBrowserName("firefox");
-                        driverPool.set(new RemoteWebDriver(url,desiredCapability));
-                        driverPool.get().manage().window().maximize();
-                        driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                    break;
 
             }
 
