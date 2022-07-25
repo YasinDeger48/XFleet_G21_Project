@@ -1,5 +1,5 @@
-@smoke
-  Feature: Smoke Tests
+@smoke @FLTAPS-2007
+Feature: Smoke Tests
     @FLTAPS-1941
     Scenario Outline: User can click the 'Add Event' button
       Given "<UserType>" is on the login page
