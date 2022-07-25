@@ -174,7 +174,7 @@ public class US012_Last_Odometer_Filter {
     @Then("User see  only empty values should be displayed")
     public void user_see_only_empty_values_should_be_displayed() {
 
-        Assert.assertTrue();
+
 
 
     }
