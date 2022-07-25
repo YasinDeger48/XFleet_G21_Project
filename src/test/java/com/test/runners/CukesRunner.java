@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features", //content -> features
         glue = "com/test/stepdefinitions", //source -> step definitions
         dryRun = false,
-        tags = "@smoke",
+        tags = "@FLTAPS-2007",
         publish = false
 
 )
