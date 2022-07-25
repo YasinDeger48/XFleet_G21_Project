@@ -55,6 +55,7 @@ public class US005_Add_Event_StepDefinitions {
 
             homePage.tableRows.get(random.nextInt(homePage.tableRows.size())).click();
         }
+        BrowserUtils.sleep(2);
 
     }
 
@@ -76,7 +77,7 @@ public class US005_Add_Event_StepDefinitions {
     public void user_sees_the_add_event_page() {
         wait.until(ExpectedConditions.attributeToBe(homePage.loaderMasky, "class", "loader-mask"));
         BrowserUtils.sleep(2);
-        Assert.assertTrue(homePage.popUpForm.isDisplayed());
+        Assert.assertTrue(homePage.popUpForm.isDisplayed() ||homePage.popUpCloseButton.isDisplayed());
         BrowserUtils.sleep(2);
 
         try{
