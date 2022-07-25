@@ -1,7 +1,7 @@
 @wip
 Feature: Creating Car
 
-  # AC1
+  @FLTAPS-2003 # AC1
   Scenario: "Create Car" button shouldn't be displayed for the driver
     Given Truck Driver is on the login page
     When Truck Driver enters valid credentials
@@ -10,7 +10,7 @@ Feature: Creating Car
     And Truck Driver clicks Vehicles
     Then Create Car button shouldn't be displayed
 
-  # AC2 # AC3 # AC4
+  @FLTAPS-2004 # AC2 # AC3 # AC4
   Scenario Outline: "Create Car" button should be displayed and user should land in the "Create Car" page
   Form data structure should be as defined
     Given Store_Sales Manager is on the login page
@@ -59,7 +59,7 @@ Feature: Creating Car
       | horsepowerTaxation  | numerical           |
       | power               | numerical           |
 
-  # AC5 # AC6
+  @FLTAPS-2005 # AC5 # AC6
   Scenario Outline: Saving options
     Given Store_Sales Manager is on the login page
     When Store_Sales Manager enters valid credentials
