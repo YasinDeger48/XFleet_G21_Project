@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
 
 
-        tags = "@AddEvent_2",
+        tags = "@FLTAPS-2002",
         plugin = {
                 //"pretty",
                 "html:target/reports/cucumber-report.html",
