@@ -1,3 +1,4 @@
+@wip
 Feature: Creating Car
 
   # AC1
@@ -9,7 +10,7 @@ Feature: Creating Car
     And Truck Driver clicks Vehicles
     Then Create Car button shouldn't be displayed
 
-  @wip # AC2 # AC3 # AC4
+  # AC2 # AC3 # AC4
   Scenario Outline: "Create Car" button should be displayed and user should land in the "Create Car" page
   Form data structure should be as defined
     Given Store_Sales Manager is on the login page
@@ -57,6 +58,23 @@ Feature: Creating Car
       | horsepower          | numerical           |
       | horsepowerTaxation  | numerical           |
       | power               | numerical           |
+
+  # AC5 # AC6
+  Scenario Outline: Saving options
+    Given Store_Sales Manager is on the login page
+    When Store_Sales Manager enters valid credentials
+    And Store_Sales Manager clicks Fleet
+    And Store_Sales Manager clicks Vehicles
+    And Store_Sales Manager clicks Create Car
+    Then User should see Save, Save And New, Save And Close below saving options
+    Then User should see below "<savingOptions>" and related actions then success message
+
+    Examples:
+      | savingOptions |
+      | save          |
+      | saveAndNew    |
+      | saveAndClose  |
+
 
 
 

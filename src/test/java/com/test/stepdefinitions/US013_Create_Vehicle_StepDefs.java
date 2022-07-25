@@ -39,7 +39,6 @@ public class US013_Create_Vehicle_StepDefs {
     Faker faker = new Faker();
 
 
-
     //AC1
 
     @Then("Truck Driver clicks Fleet")
@@ -72,12 +71,13 @@ public class US013_Create_Vehicle_StepDefs {
         String[] userType = {"Sales Manager", "Store Manager"};
         int randomUser = random.nextInt(2);
         loginPage.signIn(userType[randomUser]);
+        wait.until(ExpectedConditions.attributeToBe(homePage.loaderMasky, "class", "loader-mask"));
     }
 
     @Then("Store_Sales Manager sees Xfleet Homepage")
     public void store_sales_manager_sees_xfleet_homepage() {
 
-        wait.until(ExpectedConditions.attributeToBe(homePage.loaderMasky, "class", "loader-mask"));
+
         String[] userType = {"Sales Manager", "Store Manager"};
         int randomUser = random.nextInt(2);
 
@@ -156,31 +156,31 @@ public class US013_Create_Vehicle_StepDefs {
             case "numerical":
                 switch (entries) {
                     case "modelYear":
-                        createCarPage.modelYear.sendKeys(faker.number().numberBetween(1900,2022)+"");
+                        createCarPage.modelYear.sendKeys(faker.number().numberBetween(1900, 2022) + "");
                         break;
                     case "lastOdometer":
-                        createCarPage.lastOdometer.sendKeys(faker.number().numberBetween(0,999999999)+"");
+                        createCarPage.lastOdometer.sendKeys(faker.number().numberBetween(0, 999999999) + "");
                         break;
                     case "catalogValue":
-                        createCarPage.catalogValue.sendKeys(faker.number().randomDouble(2,1000,9999999)+"");
+                        createCarPage.catalogValue.sendKeys(faker.number().randomDouble(2, 1000, 9999999) + "");
                         break;
                     case "seatNumber":
                         createCarPage.seatsNumber.sendKeys(faker.numerify("?"));
                         break;
                     case "doorsNumber":
-                        createCarPage.doorsNumber.sendKeys(faker.number().numberBetween(2,5)+"");
+                        createCarPage.doorsNumber.sendKeys(faker.number().numberBetween(2, 5) + "");
                         break;
                     case "co2Emission":
-                        createCarPage.co2.sendKeys(faker.number().numberBetween(1,100)+"");
+                        createCarPage.co2.sendKeys(faker.number().numberBetween(1, 100) + "");
                         break;
                     case "horsepower":
-                        createCarPage.hp.sendKeys(faker.number().numberBetween(50,500)+"");
+                        createCarPage.hp.sendKeys(faker.number().numberBetween(50, 500) + "");
                         break;
                     case "horsepowerTaxation":
-                        createCarPage.hpTax.sendKeys(faker.number().randomDouble(1,2,32)+"");
+                        createCarPage.hpTax.sendKeys(faker.number().randomDouble(1, 2, 32) + "");
                         break;
                     case "power":
-                        createCarPage.power.sendKeys(faker.number().numberBetween(75,820)+"");
+                        createCarPage.power.sendKeys(faker.number().numberBetween(75, 820) + "");
                         break;
                 }
                 break;
@@ -192,7 +192,8 @@ public class US013_Create_Vehicle_StepDefs {
                     case "firstContractDate":
                         createCarPage.selectRandomDate("firstContractDate");
                         break;
-                } break;
+                }
+                break;
         }
 
     }
@@ -205,7 +206,7 @@ public class US013_Create_Vehicle_StepDefs {
             actualTransmission.add(each.getText());
         }
         Assert.assertTrue(actualTransmission.containsAll(expectedTransmission));
-        }
+    }
 
     @Then("User should see below info in fuelType dropdown")
     public void userShouldSeeBelowInfoInFuelTypeDropdown(List<String> expectedFuelType) {
@@ -231,6 +232,61 @@ public class US013_Create_Vehicle_StepDefs {
         robot.keyRelease(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
+
+    }
+
+    //AC5
+
+    @Then("User should see Save, Save And New, Save And Close below saving options")
+    public void user_should_see_below_saving_options() {
+        wait.until(ExpectedConditions.attributeToBe(homePage.loaderMasky, "class", "loader-mask"));
+        createCarPage.saveDropdown.click();
+        Assert.assertEquals("Save And Close", createCarPage.saveAndClose.getText());
+        Assert.assertEquals("Save And New", createCarPage.saveAndNew.getText());
+        Assert.assertEquals("Save", createCarPage.save.getText());
+
+    }
+
+    //AC5  //AC6
+
+    @Then("User should see below {string} and related actions then success message")
+    public void user_should_see_below_and_then_success_message(String savingOptions) {
+
+        String license;
+        switch (savingOptions) {
+            case "save":
+                createCarPage.save.click();
+
+                license = faker.bothify("?#?#?#?#?#");
+                createCarPage.licensePlate.sendKeys(license);
+
+                wait.until(ExpectedConditions.visibilityOf(createCarPage.entitySavedMessage));
+                Assert.assertEquals("Entity saved", createCarPage.entitySavedMessage.getText());
+                Assert.assertFalse(Driver.getDriver().getTitle().startsWith("Create Car"));
+                break;
+
+            case "saveAndNew":
+                createCarPage.saveAndNew.click();
+
+                createCarPage.licensePlate.sendKeys(faker.bothify("?#?#?#?#?#"));
+
+                wait.until(ExpectedConditions.visibilityOf(createCarPage.entitySavedMessage));
+                Assert.assertEquals("Entity saved", createCarPage.entitySavedMessage.getText());
+                Assert.assertTrue(Driver.getDriver().getTitle().startsWith("Create Car"));
+
+                break;
+
+            case "saveAndClose":
+                createCarPage.saveAndClose.click();
+
+                license = faker.bothify("?#?#?#?#?#");
+                createCarPage.licensePlate.sendKeys(license);
+
+                wait.until(ExpectedConditions.visibilityOf(createCarPage.entitySavedMessage));
+                Assert.assertEquals("Entity saved", createCarPage.entitySavedMessage.getText());
+                Assert.assertFalse(Driver.getDriver().getTitle().startsWith("Create Car"));
+                break;
+        }
 
     }
 }

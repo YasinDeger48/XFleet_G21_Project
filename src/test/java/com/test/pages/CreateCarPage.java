@@ -86,6 +86,24 @@ public class CreateCarPage extends BasePage {
     @FindBy(xpath = "//select[@name='custom_entity_type[FuelType]']")
     public WebElement fuelType;
 
+    @FindBy(xpath = "//div[@class='message']")
+    public WebElement entitySavedMessage;
+
+    @FindBy(xpath = "//a[@class='btn-success btn dropdown-toggle']")
+    public WebElement saveDropdown;
+
+    @FindBy(xpath = "//button[@class='action-button dropdown-item']")
+    public WebElement saveAndClose;
+
+    @FindBy(xpath = "(//button[@class='main-group action-button dropdown-item'])[1]")
+    public WebElement saveAndNew;
+
+    @FindBy(xpath = "(//button[@class='main-group action-button dropdown-item'])[2]")
+    public WebElement save;
+
+    @FindBy(xpath = "//h1[@class='user-name']")
+    public WebElement afterCreatingCarLicenseSubtitle;
+
     public void selectRandomDate(String entry) {
 
         switch (entry) {
