@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class VehiclePage extends BasePage{
+public class VehiclePage extends BasePage {
 
 
     @FindBy(xpath = "//button[@class='btn dropdown-toggle ']")
@@ -125,7 +125,26 @@ public class VehiclePage extends BasePage{
     @FindBy(xpath = "//div[@class='message']")
     public WebElement downloadConfirmationMessage;
 
-    public WebElement downloadableTableDataFormatSelection(String formatType){
+    public WebElement downloadableTableDataFormatSelection(String formatType) {
         return Driver.getDriver().findElement(By.linkText(formatType));
     }
+
+    @FindBy(xpath = "//tbody[@class='grid-body']/tr[@class='grid-row row-click-action'][1]/td[2]")
+    public WebElement carRow;
+
+    @FindBy(xpath = "//td/div[@class='more-bar-holder']/div/a")
+    public WebElement threeDot;
+
+
+    @FindBy(xpath = "//a[@title='View']")
+    public WebElement threeDotView;
+
+    @FindBy(xpath = "//*[@id=\"grid-custom-entity-grid-642375592\"]/div[2]/div[2]/div[2]/div/table/tbody/tr[1]/td[1]")
+    public WebElement licensePlate;
+
+    @FindBy(xpath = "//*[@id=\"grid-custom-entity-grid-642375592\"]/div[2]/div[2]/div[2]/div/table/tbody/tr[1]/td[3]")
+    public WebElement driverName;
+
+    @FindBy(xpath = "//*[@id=\"grid-custom-entity-grid-642375592\"]/div[2]/div[2]/div[2]/div/table/tbody/tr[1]/td[4]")
+    public WebElement locationName;
 }
