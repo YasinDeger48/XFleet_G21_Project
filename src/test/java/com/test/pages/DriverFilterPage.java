@@ -7,9 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class US11ManagePage {
+public class DriverFilterPage {
 
-    public US11ManagePage() {
+    public DriverFilterPage() {
 
         PageFactory.initElements(Driver.getDriver(),this);
 
@@ -71,6 +71,14 @@ public class US11ManagePage {
 
     @FindBy(xpath="(//a[@class=\"dropdown-item choice-value\"])[3]")
     public WebElement IsEqualTo;
+
+    @FindBy(xpath="(//a[@class=\"dropdown-item choice-value\"])[1]")
+    public WebElement Contains;
+
+    @FindBy(xpath="//div[.='No entities were found to match your search. Try modifying your search criteria...']")
+    public WebElement nonAlphabetical;
+       //@FindBy(xpath="//*[@id=\"grid-custom-entity-grid-232204340\"]/div[2]/div[2]/div[3]/span/text()")
+        //public WebElement nonAlphabetical;
 
 
 

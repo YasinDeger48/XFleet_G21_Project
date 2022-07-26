@@ -1,7 +1,7 @@
 package com.test.stepdefinitions;
 
+import com.test.pages.DriverFilterPage;
 import com.test.pages.HomePage;
-import com.test.pages.US11ManagePage;
 import com.test.utilities.BrowserUtils;
 import com.test.utilities.Driver;
 import io.cucumber.java.en.And;
@@ -10,63 +10,62 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class US011_ManageFilters_Module {
+public class US011_DriverFilters_Module {
 
-    US11ManagePage us11ManagePage = new US11ManagePage();
+    DriverFilterPage driverFilterPage = new DriverFilterPage();
    // WebDriverWait wait;
      HomePage homePage= new HomePage();
+    Actions actions = new Actions(Driver.getDriver());
     List<WebElement> ActualNames;
 
     @And("User clicks the Vehicles button module")
     public void userClicksTheVehiclesButtonModule() {
-        BrowserUtils.hover_Over_And_Click(us11ManagePage.Vehiclemodule);
+        BrowserUtils.hover_Over_And_Click(driverFilterPage.Vehiclemodule);
     }
 
     @Then("user should see Fleet-Vehicle module")
     public void userShouldSeeFleetVehicleModule() {
-        Assert.assertTrue(us11ManagePage.VehicleCarTitle.isDisplayed());
+        Assert.assertTrue(driverFilterPage.VehicleCarTitle.isDisplayed());
     }
 
 
     @When("user clicks filterButton")
     public void user_clicks_filter_button() {
         //wait = new WebDriverWait(Driver.getDriver(), 60);
-     //  wait.until(ExpectedConditions.visibilityOf(us11ManagePage.VehicleCarTitle));
+     //  wait.until(ExpectedConditions.visibilityOf(driverFilterPage.VehicleCarTitle));
         homePage.waitUntilLoaderScreenDisappear();
         ActualNames = Driver.getDriver().findElements(By.xpath("//tbody//tr//td[3]"));
         BrowserUtils.sleep(25);
-        us11ManagePage.filterButton.click();
+        driverFilterPage.filterButton.click();
     }
 
 
     @When("user clicks manageFiltersbutton")
     public void user_clicks_manage_filtersbutton() {
-       us11ManagePage.manageFiltersbutton.click();
+       driverFilterPage.manageFiltersbutton.click();
     }
     @When("user clicks Drivercheckbutton")
     public void user_clicks_drivercheckbutton() {
         BrowserUtils.sleep(5);
-        us11ManagePage.Drivercheckbutton.click();
+        driverFilterPage.Drivercheckbutton.click();
     }
     @When("user clicks Driverbutton")
     public void user_clicks_driverbutton() {
         BrowserUtils.sleep(3);
-        us11ManagePage.Driverbutton.click();
+        driverFilterPage.Driverbutton.click();
 
 
 
     }
     @When("user clicks ContainsTogglebutton")
     public void user_clicks_contains_togglebutton() {
-        us11ManagePage.ContainsTogglebutton.click();
+        driverFilterPage.ContainsTogglebutton.click();
         BrowserUtils.sleep(3);
     }
 
@@ -79,16 +78,17 @@ public class US011_ManageFilters_Module {
     @And("user enters a keyword {string} to the inputbox")
     public void userEntersAKeywordToTheInputbox(String text) {
            expected=text;
-            us11ManagePage.inbox.sendKeys(text);
+            driverFilterPage.inbox.sendKeys(text);
             BrowserUtils.sleep(2);
-            us11ManagePage.update.click();
+            driverFilterPage.update.click();
             BrowserUtils.sleep(2);
     }
 
     @Then("the result should contain the keyword")
     public void theResultShouldContainTheKeyword() {
        BrowserUtils.sleep(5);
-        Assert.assertEquals(expected,us11ManagePage.nameLocation.getText());
+        Assert.assertEquals(expected, driverFilterPage.nameLocation.getText());
+
     }
 
     @And("user clicks DoesNotContain button")
@@ -98,16 +98,16 @@ public class US011_ManageFilters_Module {
      //   BrowserUtils.sleep(3);
       //  Select select= new Select(Driver.getDriver().findElement(By.xpath("//a[.='does not contain']")));
         //select.selectByVisibleText("does not contain");
-        us11ManagePage.doesNotContainButton.click();
+        driverFilterPage.doesNotContainButton.click();
         BrowserUtils.sleep(2);
-       // us11ManagePage.inbox.sendKeys("Mrs. Conrad Fritsch");
-        //us11ManagePage.update.click();
+       // driverFilterPage.inbox.sendKeys("Mrs. Conrad Fritsch");
+        //driverFilterPage.update.click();
     }
 
     @Then("the result should not contain the keyword")
     public void theResultShouldNotContainTheKeyword() {
-       // Assert.assertFalse(us11ManagePage.nameLocation.isDisplayed());
-           // Assert.assertNotEquals(expected,us11ManagePage.nameLocation.getText());
+       // Assert.assertFalse(driverFilterPage.nameLocation.isDisplayed());
+           // Assert.assertNotEquals(expected,driverFilterPage.nameLocation.getText());
         List<WebElement> elements = Driver.getDriver().findElements(By.xpath("//td[.='Mrs. Conrad Fritsch']"));
        System.out.println("--sizesizesize---"+ elements.size());
 
@@ -152,51 +152,91 @@ public class US011_ManageFilters_Module {
 
     @And("user clicks Startswith button")
     public void userClicksStartswithButton() {
-        us11ManagePage.startsWith.click();
+        driverFilterPage.startsWith.click();
     }
 
     @And("user enters a keyword with {string} to the inputbox")
     public void userEntersAKeywordWithToTheInputbox(String textstarts) {
         expected=textstarts;
-        us11ManagePage.inbox.sendKeys(textstarts);
+        driverFilterPage.inbox.sendKeys(textstarts);
         BrowserUtils.sleep(2);
-        us11ManagePage.update.click();
+        driverFilterPage.update.click();
 
     }
 
     @Then("the result should start with the keyword")
     public void theResultShouldStartWithTheKeyword() {
+        String expected= "Mrs.";
 
-
+          String actual= driverFilterPage.nameLocation.getText();
+        Assert.assertTrue(actual.startsWith(expected));
     }
 
     @And("user clicks Endswith button")
     public void userClicksEndswithButton() {
-        us11ManagePage.endsWith.click();
+        driverFilterPage.endsWith.click();
     }
 
     @And("user enters a keyword ending {string} to the inputbox")
     public void userEntersAKeywordEndingToTheInputbox(String textends) {
         expected=textends;
-        us11ManagePage.inbox.sendKeys(textends);
+        driverFilterPage.inbox.sendKeys(textends);
         BrowserUtils.sleep(2);
-        us11ManagePage.update.click();
+        driverFilterPage.update.click();
 
     }
 
     @Then("the result should end with the keyword")
     public void theResultShouldEndWithTheKeyword() {
+        String expected= "Fritsch";
+
+        String actual= driverFilterPage.nameLocation.getText();
+        Assert.assertTrue(actual.endsWith(expected));
 
     }
 
     @And("user clicks IsEqualTo button")
     public void userClicksIsEqualToButton() {
-        us11ManagePage.IsEqualTo.click();
+        driverFilterPage.IsEqualTo.click();
     }
 
     @Then("the result should match the keyword exactly")
     public void theResultShouldMatchTheKeywordExactly() {
+        String expected= "Mrs. Conrad Fritsch";
+        String actual= driverFilterPage.nameLocation.getText();
+        Assert.assertTrue(actual.equals(expected));
+    }
 
+
+    @And("user clicks containsAndOther buttons")
+    public void userClicksContainsAndOtherButtons() {
+        driverFilterPage.Contains.click();
+    }
+
+    @And("user enters  non-alphabetical characters to the inbox")
+    public void userEntersNonAlphabeticalCharactersToTheInbox() {
+        driverFilterPage.inbox.sendKeys("1!");
+    }
+
+    @And("user clicks update button")
+    public void userClicksUpdateButton() {
+        driverFilterPage.update.click();
+    }
+
+    @Then("method should not accept non-alphabetical character")
+    public void methodShouldNotAcceptNonAlphabeticalCharacter() {
+        //String expected= "No entities were found to match your search. Try modifying your search criteria...";
+         homePage.waitUntilLoaderScreenDisappear();
+         BrowserUtils.sleep(3);
+        Assert.assertTrue(driverFilterPage.nonAlphabetical.isDisplayed());
+
+    }
+
+
+    @When("User hover over the Fleet module")
+    public void userHoverOverTheFleetModule() {
+        homePage.waitUntilLoaderScreenDisappear();
+        actions.moveToElement(homePage.fleetButton).perform();
     }
 }
 
