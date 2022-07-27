@@ -76,8 +76,9 @@ public class US005_Add_Event_StepDefinitions {
     @Then("User sees the Add Event page")
     public void user_sees_the_add_event_page() {
         wait.until(ExpectedConditions.attributeToBe(homePage.loaderMasky, "class", "loader-mask"));
-        BrowserUtils.sleep(2);
-        Assert.assertTrue(homePage.popUpForm.isDisplayed() ||homePage.popUpCloseButton.isDisplayed());
+        BrowserUtils.sleep(3);
+        wait.until(ExpectedConditions.visibilityOf(homePage.popUpForm));
+        Assert.assertTrue(homePage.popUpForm.isDisplayed() || homePage.popUpCloseButton.isDisplayed());
         BrowserUtils.sleep(2);
 
         try{
