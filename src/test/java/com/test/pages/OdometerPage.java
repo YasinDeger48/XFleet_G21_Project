@@ -1,5 +1,6 @@
 package com.test.pages;
 
+import com.test.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -30,6 +31,10 @@ public class OdometerPage extends BasePage {
     @FindBy(xpath = "//i[@class='fa-filter hide-text']")
     public WebElement filterIcon;
 
+    @FindBy(xpath = "//div//a[@title='Filters']")
+    public WebElement filterIcon2;
+
+
     @FindBy(xpath = "//input[@name='value']")
     public WebElement betweenFirstBox;
 
@@ -45,23 +50,17 @@ public class OdometerPage extends BasePage {
     @FindBy(xpath = "//button[.='Update']")
     public WebElement update;
 
-    @FindBy(xpath = "//td[.='2,020']")
-    public WebElement betweenValue;
+    @FindBy(xpath = "//tbody//td[@data-column-label='Last Odometer']")
+    public WebElement rowValue;
 
     @FindBy(xpath = "//td[.='216,175']")
-    public WebElement equalValue;
-
-    @FindBy(xpath = "//td[.='464,191']")
-    public WebElement moreThanFirst;
-
+    public WebElement equalRow;
 
     @FindBy(xpath = "//td[.='468,472']")
-    public WebElement moreThanSecond;
+    public WebElement rowMoreThan;
 
     @FindBy(xpath = "//td[.='2,020']")
     public WebElement lessThanValue;
-
-
 
 
     @FindBy(xpath = "//input[@name='value']")
@@ -72,8 +71,6 @@ public class OdometerPage extends BasePage {
 
     @FindBy(xpath = "//input[@name='value']")
     public WebElement lessThanBox;
-
-
 
 
     @FindBy(xpath = "//a[.='not between']")
@@ -102,6 +99,15 @@ public class OdometerPage extends BasePage {
 
     @FindBy(xpath = "//a[.='is not empty']")
     public WebElement isNotEmpty;
+
+    @FindBy(xpath = "(//label[@class='dib'])[3]")
+    public WebElement counter;
+
+
+    public boolean getUrl(){
+        Driver.getDriver().getCurrentUrl();
+        return false;
+    }
 
 
 

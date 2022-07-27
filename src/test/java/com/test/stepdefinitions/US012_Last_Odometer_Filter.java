@@ -5,14 +5,15 @@ import com.test.pages.HomePage;
 import com.test.pages.LoginPage;
 import com.test.pages.OdometerPage;
 import com.test.utilities.BrowserUtils;
+import com.test.utilities.Driver;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.crypto.KeyAgreementSpi;
+import java.util.concurrent.TimeUnit;
 
 
 public class US012_Last_Odometer_Filter {
@@ -20,23 +21,32 @@ public class US012_Last_Odometer_Filter {
     HomePage homePage = new HomePage();
     LoginPage loginPage = new LoginPage();
     OdometerPage odometerPage = new OdometerPage();
+    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 25);
+
+    String firstValue = "2000";
+    String secondValue = "2500";
+    String equalValue = "216175";
+    String moreThanValue = "465000";
+    String lessThanValue = "5000";
 
     // AC-1
     @When("user hover over on Fleet button and clicks to Vehicles")
     public void user_hover_over_on_fleet_button_and_clicks_to_vehicles() {
 
-    homePage.waitUntilLoaderScreenDisappear();
+        wait.until(ExpectedConditions.attributeToBe(homePage.loaderMasky, "class", "loader-mask"));
 
-    homePage.fleetButton.click();
-    homePage.vehiclesButton.click();
+
+        homePage.fleetButton.click();
+        homePage.vehiclesButton.click();
 
     }
 
     @When("user click Manage filters button and able to select")
     public void user_click_manage_filters_button_and_able_to_select() {
 
-        homePage.waitUntilLoaderScreenDisappear();
-        odometerPage.filterIcon.click();
+        wait.until(ExpectedConditions.attributeToBe(homePage.loaderMasky, "class", "loader-mask"));
+        wait.until(ExpectedConditions.elementToBeClickable(odometerPage.filterIcon2));
+        odometerPage.filterIcon2.click();
         odometerPage.manageFilters.click();
 
     }
@@ -86,9 +96,10 @@ public class US012_Last_Odometer_Filter {
 
     @When("User click on the dropdown and select Between method with numeric values")
     public void userClickOnTheDropdownAndSelectBetweenMethodWithNumericValues() {
+        odometerPage.dropdownOptions.click();
         odometerPage.between.click();
-        odometerPage.betweenFirstBox.sendKeys("2000");
-        odometerPage.betweenSecondBox.sendKeys("2500");
+        odometerPage.betweenFirstBox.sendKeys(firstValue);
+        odometerPage.betweenSecondBox.sendKeys(secondValue);
 
     }
 
@@ -102,7 +113,16 @@ public class US012_Last_Odometer_Filter {
     @Then("User see the results should be between the specified values")
     public void user_see_the_results_should_be_between_the_specified_values() {
 
-    odometerPage.betweenValue.isDisplayed();
+        homePage.waitUntilLoaderScreenDisappear();
+        wait.until(ExpectedConditions.visibilityOf(odometerPage.rowValue));
+        String actualValue = odometerPage.rowValue.getText();
+        int fValue = Integer.parseInt(firstValue);
+        int sValue = Integer.parseInt(secondValue);
+        String[] split = actualValue.split(",");
+        int aValues = Integer.parseInt((split[0]+split[1]));
+
+        BrowserUtils.sleep(2);
+        Assert.assertTrue(aValues>fValue && aValues<sValue);
 
 
 
@@ -113,9 +133,13 @@ public class US012_Last_Odometer_Filter {
     @When("User click on the dropdown and select Equals method with numeric values")
     public void userClickOnTheDropdownAndSelectEqualsMethodWithNumericValues() {
 
+        homePage.waitUntilLoaderScreenDisappear();
+        odometerPage.dropdownOptions.click();
         odometerPage.equals.click();
-        odometerPage.equalBox.sendKeys("216175");
-        Assert.assertEquals("216175", odometerPage.equalValue );
+        odometerPage.equalBox.sendKeys(equalValue);
+        odometerPage.update.click();
+        wait.until(ExpectedConditions.attributeToBe(homePage.loaderMasky, "class", "loader-mask"));
+
 
     }
 
@@ -123,7 +147,15 @@ public class US012_Last_Odometer_Filter {
     @Then("User see  the results should match the specified value exactly")
     public void user_see_the_results_should_match_the_specified_value_exactly() {
 
-        Assert.assertEquals("216175", odometerPage.equalValue );
+        //wait.until(ExpectedConditions.visibilityOf(odometerPage.betweenValue));
+        int eValue = Integer.parseInt(equalValue);
+        String actualValue = odometerPage.equalRow.getText();
+        String[] split = actualValue.split(",");
+        int acValue = Integer.parseInt((split[0]+split[1]));
+
+        Assert.assertEquals(eValue, acValue );
+
+
     }
 
     // AC-5
@@ -131,16 +163,22 @@ public class US012_Last_Odometer_Filter {
     @When("User click on the dropdown and select More than method with numeric values")
     public void userClickOnTheDropdownAndSelectMoreThanMethodWithNumericValues() {
 
+        homePage.waitUntilLoaderScreenDisappear();
+        odometerPage.dropdownOptions.click();
         odometerPage.moreThan.click();
-        odometerPage.moreThanBox.sendKeys("460000");
+        odometerPage.moreThanBox.sendKeys(moreThanValue);
     }
 
     @Then("User see  the results should be more than the specified value")
     public void user_see_the_results_should_be_more_than_the_specified_value() {
 
-        odometerPage.moreThanFirst.isDisplayed();
-        odometerPage.moreThanSecond.isDisplayed();
+        int moreValue = Integer.parseInt(moreThanValue);
+        String actualValue = odometerPage.rowMoreThan.getText();
+        String[] split = actualValue.split(",");
+        int acValue = Integer.parseInt((split[0]+split[1]));
+        System.out.println(acValue);
 
+        Assert.assertTrue(moreValue<acValue);
 
 
     }
@@ -150,8 +188,10 @@ public class US012_Last_Odometer_Filter {
     @When("User click on the dropdown and select Less than method with numeric values")
     public void userClickOnTheDropdownAndSelectLessThanMethodWithNumericValues() {
 
+        homePage.waitUntilLoaderScreenDisappear();
+        odometerPage.dropdownOptions.click();
         odometerPage.lessThan.click();
-        odometerPage.lessThanBox.sendKeys("5000");
+        odometerPage.lessThanBox.sendKeys(lessThanValue);
 
 
     }
@@ -159,7 +199,15 @@ public class US012_Last_Odometer_Filter {
     @Then("User see  the results should be less than the specified value")
     public void userSeeTheResultsShouldBeLessThanTheSpecifiedValue() {
 
-        odometerPage.lessThanValue.isDisplayed();
+        int lessValue = Integer.parseInt(lessThanValue);
+        String actualValue = odometerPage.lessThanValue.getText();
+        String[] split = actualValue.split(",");
+        int acValue = Integer.parseInt((split[0]+split[1]));
+        System.out.println(acValue);
+
+        Assert.assertTrue(lessValue>acValue);
+
+
     }
 
 
@@ -168,26 +216,83 @@ public class US012_Last_Odometer_Filter {
     @When("User click on the dropdown and select Is Empty method")
     public void userClickOnTheDropdownAndSelectIsEmptyMethod() {
 
+        homePage.waitUntilLoaderScreenDisappear();
+        odometerPage.dropdownOptions.click();
         odometerPage.isEmpty.click();
     }
 
     @Then("User see  only empty values should be displayed")
     public void user_see_only_empty_values_should_be_displayed() {
 
-
-
+      wait.until(ExpectedConditions.visibilityOf(odometerPage.rowValue));
+      odometerPage.rowValue.getText().isEmpty();
 
     }
 
 
     // AC-8
-    @And("user selects as a {string} and enter {string}")
-    public void userSelectsAsAAndEnter(String method, String value) {
+
+
+    @When("User click on the dropdown and select Between method with non-numeric values")
+    public void userClickOnTheDropdownAndSelectBetweenMethodWithNonNumericValues() {
+        homePage.waitUntilLoaderScreenDisappear();
+        odometerPage.dropdownOptions.click();
+        odometerPage.between.click();
+        odometerPage.betweenFirstBox.sendKeys("odo");
+        odometerPage.betweenSecondBox.sendKeys("meter");
+
 
     }
 
-    @Then("user should see {string} should not accept {string}")
-    public void userShouldSeeShouldNotAccept(String method, String value) {
+    @And("User see method should not accept non-numeric values")
+    public void userSeeMethodShouldNotAcceptNonNumericValues() {
+
+
+        System.out.println(odometerPage.counter.getText());
+    Assert.assertTrue(odometerPage.counter.getText().contains("93"));
+
+    }
+
+    @When("User click on the dropdown and select Equals method with non-numeric value")
+    public void userClickOnTheDropdownAndSelectEqualsMethodWithNonNumericValue() throws InterruptedException {
+
+        Driver.getDriver().manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        //Driver.getDriver().navigate().refresh();
+        homePage.waitUntilLoaderScreenDisappear();
+        //Thread.sleep(7000);
+        //odometerPage.lastOdometerDrop.click();
+        //Thread.sleep(5000);
+        odometerPage.dropdownOptions.click();
+        odometerPage.equals.click();
+        odometerPage.equalBox.sendKeys("2,000");
+
+    }
+
+
+    @When("User click on the dropdown and select More than method with non-numeric value")
+    public void userClickOnTheDropdownAndSelectMoreThanMethodWithNonNumericValue() throws InterruptedException {
+        //Driver.getDriver().manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        homePage.waitUntilLoaderScreenDisappear();
+        //Thread.sleep(7000);
+        //odometerPage.lastOdometerDrop.click();
+        //Thread.sleep(5000);
+        odometerPage.dropdownOptions.click();
+        odometerPage.moreThan.click();
+        odometerPage.moreThanBox.sendKeys("50000+");
+    }
+
+    @When("User click on the dropdown and select Less than method with non-numeric value")
+    public void userClickOnTheDropdownAndSelectLessThanMethodWithNonNumericValue() throws InterruptedException {
+
+       // Driver.getDriver().manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+
+        homePage.waitUntilLoaderScreenDisappear();
+        //Thread.sleep(5000);
+        //odometerPage.lastOdometerDrop.click();
+        //Thread.sleep(5000);
+        odometerPage.dropdownOptions.click();
+        odometerPage.lessThan.click();
+        odometerPage.lessThanBox.sendKeys("2000from");
     }
 
 
